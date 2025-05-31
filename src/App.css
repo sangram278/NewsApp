@@ -1,38 +1,234 @@
-.App {
-  text-align: center;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+ background: #222;
+  padding: 1rem 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  flex: 1;
+  text-align: left;
+}
+
+.header h2 a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.category-buttons {
+  flex: 2;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.category-item {
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: color 0.3s ease;
+}
+
+.category-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.category-item:hover {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.category-item:hover::after {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.active-category {
+  font-weight: bold !important;
+  color: white !important;
+}
+
+
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.news-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  padding: 1rem;
+  text-align: center;
+}
+
+.news-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.readmore {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.readmore:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:disabled {
+  background-color: #aaa;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+
+
+@media (max-width: 1024px) {
+  .news-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media (max-width: 768px) {
+  .news-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .category-buttons {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .category-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .category-item {
+    padding: 8px;
+    font-size: 1rem;
+  }
+}
+
+/* Hide menu icon by default */
+.menu-icon {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .menu-icon {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+  }
+
+  .header {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .header h2 {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .menu-icon {
+    position: relative;
+    z-index: 1001;
+  }
+
+  .category-buttons {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #222;
+    padding: 1rem;
+    width: max-content;
+    min-width: 150px;
+    border-radius: 0 0 0 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  .category-buttons.show {
+    display: flex;
+  }
+
+  .category-item {
+    padding: 8px 12px;
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+
